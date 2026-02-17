@@ -14,7 +14,15 @@ namespace OtoSevk.Entities
 		[StringLength(20)]
 		public string Telefon { get; set; }
 		[StringLength(50)]
+		public string SurucuAdi { get; set; }
+		[StringLength(50)]
+		public string Sifre { get; set; }
+		[StringLength(50)]
+		public int RolId { get; set; }
 		public bool AktifMi { get; set; }
+		public DateTime? EklenmeTarihi { get; set; } = DateTime.Now;
+
+
 
 
 	}

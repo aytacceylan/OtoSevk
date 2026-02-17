@@ -1,6 +1,6 @@
 ﻿namespace OtoSevk.Entities
 {
-	internal class Sevk : IEntity
+	public class Sevk : IEntity
 	{
 		public int Id { get; set; }
 		public int AracId { get; set; }
@@ -14,10 +14,10 @@
 		public string? SevkYeri { get; set; }
 		public Arac? Arac { get; set; }
 		public int AracKomutaniID { get; set; }
-		public string AracKomutaniAdi { get; set; }
-		public string AracKomutaniSoyadi { get; set; }
+		public string? AracKomutaniAdi { get; set; }
+		public string? AracKomutaniSoyadi { get; set; }
 		public AracKomutani? AracKomutani { get; set; }
-		public string AracKomutaniTelefon { get; set; }
+		public string? AracKomutaniTelefon { get; set; }
 		public int YapilanKM { get; set; }
 		public int YolcuAdedi { get; set; }
 		public string? NotlarTasinanYuk { get; set; }
