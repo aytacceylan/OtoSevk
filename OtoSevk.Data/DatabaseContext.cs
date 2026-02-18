@@ -18,7 +18,7 @@ namespace OtoSevk.Data
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseSqlServer(@"server=(LocalDB)\MSSQLLocalDB;database=OtoSevkNetCore; integrated security=true; TrustServerSertificate=true;");
+			optionsBuilder.UseSqlServer(@"server=(LocalDB)\MSSQLLocalDB;database=OtoSevkNetCore; integrated security=true; TrustServerCertificate=true;");
 
 			optionsBuilder.ConfigureWarnings(warnings => warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
 
