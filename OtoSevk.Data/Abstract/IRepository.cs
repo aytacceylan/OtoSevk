@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 
 
 namespace OtoSevk.Data.Abstract
@@ -17,7 +14,7 @@ namespace OtoSevk.Data.Abstract
         void Delete(T entity);
         int Save();
         //Asenkron Metotlar
-        Task<T> FindAsync();
+        Task<T> FindAsync(int id);
         Task<T> GetAsync(Expression<Func<T, bool>> expression);
         Task<List<T>> GetAllAsync();
         Task<List<T>> GetAllAsync(Expression<Func<T, bool>> expression);

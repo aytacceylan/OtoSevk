@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using OtoSevk.Data.Abstract;
 using OtoSevk.Entities;
 using System;
@@ -11,8 +12,8 @@ using System.Threading.Tasks;
 namespace OtoSevk.Data.Concrete
 {
     public class Repository<T> : IRepository<T> where T : class, IEntity, new()
-    {
 
+    {
         internal DatabaseContext _context;
         internal DbSet<T> _dbSet;
 
@@ -21,7 +22,6 @@ namespace OtoSevk.Data.Concrete
             _context = context;
             _dbSet = _context.Set<T>();
         }
-     
         public void Add(T entity)
         {
             _dbSet.Add(entity);
@@ -29,8 +29,8 @@ namespace OtoSevk.Data.Concrete
 
         public async Task AddAsync(T entity)
         {
-            await _dbSet.AddAsync(entity);  
-        }
+            await _dbSet.AddAsync(entity);
+        }     
 
         public void Delete(T entity)
         {
@@ -41,56 +41,58 @@ namespace OtoSevk.Data.Concrete
         {
             return _dbSet.Find(id);
         }
-
-        public Task<T> FindAsync()
+        // async yi biz ekledik.
+        public async Task<T> FindAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _dbSet.FindAsync(id);
         }
 
         public T Get(Expression<Func<T, bool>> expression)
         {
-            throw new NotImplementedException();
+            return _dbSet.FirstOrDefault(expression);
         }
 
         public List<T> GetAll()
         {
-            throw new NotImplementedException();
+            return _dbSet.ToList();
         }
 
         public List<T> GetAll(Expression<Func<T, bool>> expression)
         {
-            throw new NotImplementedException();
+            return _dbSet.Where(expression).ToList();
         }
-
-        public Task<List<T>> GetAllAsync()
+        //async ekledik
+        public async Task<List<T>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _dbSet.ToListAsync();
         }
-
-        public Task<List<T>> GetAllAsync(Expression<Func<T, bool>> expression)
+        //async ekledik
+        public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> expression)
         {
-            throw new NotImplementedException();
+            return await _dbSet.Where(expression).ToListAsync();
         }
 
         public Task<T> GetAsync(Expression<Func<T, bool>> expression)
         {
-            throw new NotImplementedException();
+            return _dbSet.FirstOrDefaultAsync(expression);
         }
 
         public int Save()
         {
-            throw new NotImplementedException();
+            return _context.SaveChanges();
         }
 
-        public Task<int> SaveAsync()
+        public async Task<int> SaveAsync()
         {
-            throw new NotImplementedException();
+            return await _context.SaveChangesAsync();
         }
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            _context.Update(entity);
         }
     }
+
+
 
 }

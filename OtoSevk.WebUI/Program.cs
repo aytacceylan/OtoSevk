@@ -1,4 +1,6 @@
 using OtoSevk.Data;
+using OtoSevk.Service.Abstract;
+using OtoSevk.Service.Concrete;
 
 namespace OtoSevk.WebUI
 {
@@ -12,6 +14,8 @@ namespace OtoSevk.WebUI
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddDbContext<DatabaseContext>();
+
+            builder.Services.AddTransient(typeof(IService<>), typeof(Service<>));
 
             var app = builder.Build();
 
