@@ -1,6 +1,7 @@
 using OtoSevk.Data;
 using OtoSevk.Service.Abstract;
 using OtoSevk.Service.Concrete;
+using System.Net;
 
 namespace OtoSevk.WebUI
 {
@@ -32,7 +33,12 @@ namespace OtoSevk.WebUI
 
             app.UseAuthorization();
 
-            app.MapStaticAssets();
+			app.MapControllerRoute(
+			    name: "admin",
+			    pattern: "{area:exists}/{controller=Main}/{action=Index}/{id?}"
+		     );
+
+			app.MapStaticAssets();
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}")
